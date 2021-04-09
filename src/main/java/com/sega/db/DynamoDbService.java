@@ -71,7 +71,7 @@ public class DynamoDbService {
 
     public List<Transaction> getTransactionByAttributeEqualsValue(String attribute, String value) {
         AttributeValue attributeValue = AttributeValue.builder()
-                .s(value)
+                .s(value)// Attribute is a String
                 .build();
 
         return getTransactionByAttributeEqualsValue(attribute, attributeValue);
@@ -80,31 +80,10 @@ public class DynamoDbService {
     public List<Transaction> getTransactionByAttributeEqualsValue(String attribute, int value) {
 
         AttributeValue attributeValue = AttributeValue.builder()
-                .n(String.valueOf(value))
+                .n(String.valueOf(value))// Attribute is a Number
                 .build();
 
         return getTransactionByAttributeEqualsValue(attribute, attributeValue);
-    }
-
-    public List<Transaction> getTransactionByAttributeEqualsValue2(String attribute, String attributeValue) {
-
-        try{
-            DynamoDbTable<Transaction> table = enhancedClient.table(TRANSACTION, TableSchema.fromBean(Transaction.class));
-
-            // Set the Expression so only Closed items are queried from the Work table
-            Expression expression = Expression.builder()
-                    .expression(attribute + " = " + attributeValue)
-                    .build();
-
-            ScanEnhancedRequest enhancedRequest = ScanEnhancedRequest.builder()
-                    .filterExpression(expression)
-                    .build();
-
-            // Get items in the Record table and write out the ID value
-            return Arrays.asList(table.scan(enhancedRequest).items().stream().toArray(Transaction[]::new));
-        } catch (DynamoDbException e) {
-            throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 405, "Unable to retrieve transactions", e);
-        }
     }
 
     public List<Transaction> getTransactionByAttributeEqualsValue(String attribute, AttributeValue attributeValue) {
