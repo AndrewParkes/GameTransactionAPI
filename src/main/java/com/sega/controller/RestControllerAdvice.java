@@ -16,7 +16,7 @@ public class RestControllerAdvice {
     @ExceptionHandler(ProcessingRequestException.class)
     public ResponseEntity<ResponseResult> handleException(ProcessingRequestException e) {
 
-        log.error(e.getMessage());
+        log.error("{} Request exception", e.getMessage(), e.getException());
 
         ResponseResult rs = new ResponseResult(e.getResponseMessage(), e.getErrorCode());
         return new ResponseEntity<>(rs, e.getHttpStatus());

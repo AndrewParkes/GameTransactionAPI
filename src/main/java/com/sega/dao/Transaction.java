@@ -1,33 +1,38 @@
 package com.sega.dao;
 
+import com.sega.model.TransactionSaveRequest;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
 
-import java.math.BigDecimal;
+import java.util.UUID;
 
 @DynamoDbBean
 public class Transaction {
 
-    Integer id;
+    String id;
     String user;
     String product;
     Double amount;
 
     public Transaction() {
+    }
 
+    public Transaction(TransactionSaveRequest transactionSaveRequest) {
+        this.id = UUID.randomUUID().toString();
+        user = transactionSaveRequest.getUser();
+        product = transactionSaveRequest.getProduct();
+        amount = transactionSaveRequest.getAmount();
     }
 
     @DynamoDbPartitionKey
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    @DynamoDbSortKey
     public String getUser() {
         return user;
     }
