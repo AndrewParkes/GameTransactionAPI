@@ -4,7 +4,10 @@ import com.sega.dao.Transaction;
 import com.sega.exception.ProcessingRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import software.amazon.awssdk.enhanced.dynamodb.*;
+import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
+import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
+import software.amazon.awssdk.enhanced.dynamodb.Expression;
+import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
 import software.amazon.awssdk.enhanced.dynamodb.model.ScanEnhancedRequest;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
@@ -17,7 +20,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 @Service
 public class DynamoDbService {
@@ -36,7 +38,6 @@ public class DynamoDbService {
         enhancedClient = DynamoDbEnhancedClient.builder()
                 .dynamoDbClient(ddb)
                 .build();
-
     }
 
     @PreDestroy
@@ -61,7 +62,6 @@ public class DynamoDbService {
         try {
             DynamoDbTable<Transaction> table = enhancedClient.table(TRANSACTION, TableSchema.fromBean(Transaction.class));
 
-            // Put the customer data into a DynamoDB table
             table.putItem(transaction);
 
         } catch (DynamoDbException e) {
@@ -86,7 +86,7 @@ public class DynamoDbService {
         return getTransactionByAttributeEqualsValue(attribute, attributeValue);
     }
 
-    public List<Transaction> getTransactionByAttributeEqualsValue(String attribute, AttributeValue attributeValue) {
+    private List<Transaction> getTransactionByAttributeEqualsValue(String attribute, AttributeValue attributeValue) {
 
         try{
             DynamoDbTable<Transaction> table = enhancedClient.table(TRANSACTION, TableSchema.fromBean(Transaction.class));

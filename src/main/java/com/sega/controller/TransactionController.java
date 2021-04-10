@@ -1,8 +1,10 @@
 package com.sega.controller;
 
 import com.sega.model.ResponseResult;
+import com.sega.model.TransactionProductRequest;
 import com.sega.model.TransactionRequest;
 import com.sega.model.TransactionSaveRequest;
+import com.sega.model.TransactionUserRequest;
 import com.sega.service.TransactionRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,8 +34,14 @@ public class TransactionController {
     }
 
     @PostMapping("/retrieveByUser")
-    public ResponseEntity<ResponseResult> retrieveAllRequest(@RequestBody TransactionRequest transactionRequest) {
+    public ResponseEntity<ResponseResult> retrieveAllRequest(@RequestBody TransactionUserRequest transactionRequest) {
 
         return ResponseEntity.ok(transactionRequestService.getTransactionsByUser(transactionRequest));
+    }
+
+    @PostMapping("/retrieveByProduct")
+    public ResponseEntity<ResponseResult> retrieveAllRequest(@RequestBody TransactionProductRequest transactionRequest) {
+
+        return ResponseEntity.ok(transactionRequestService.getTransactionsByProduct(transactionRequest));
     }
 }
