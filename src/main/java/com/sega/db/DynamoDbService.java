@@ -50,7 +50,6 @@ public class DynamoDbService {
         try{
             DynamoDbTable<Transaction> table = enhancedClient.table(TRANSACTION, TableSchema.fromBean(Transaction.class));
 
-            // Get items in the Record table and write out the ID value
             return Arrays.asList(table.scan().items().stream().toArray(Transaction[]::new));
         } catch (DynamoDbException e) {
             throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 405, "Unable to retrieve transactions", e);
@@ -91,14 +90,12 @@ public class DynamoDbService {
         try{
             DynamoDbTable<Transaction> table = enhancedClient.table(TRANSACTION, TableSchema.fromBean(Transaction.class));
 
-            // Get only Open items in the Work table
             Map<String, AttributeValue> myMap = new HashMap<>();
             myMap.put(":" + attribute, attributeValue);
 
             Map<String, String> myExMap = new HashMap<>();
             myExMap.put("#" + attribute, attribute);
 
-            // Set the Expression so only Closed items are queried from the Work table
             Expression expression = Expression.builder()
                     .expression("#" + attribute + " = :"  + attribute)
                     .expressionValues(myMap)
@@ -109,7 +106,6 @@ public class DynamoDbService {
                     .filterExpression(expression)
                     .build();
 
-            // Get items in the Record table and write out the ID value
             return Arrays.asList(table.scan(enhancedRequest).items().stream().toArray(Transaction[]::new));
         } catch (DynamoDbException e) {
             throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 405, "Unable to retrieve transactions", e);

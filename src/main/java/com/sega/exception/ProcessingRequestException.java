@@ -17,6 +17,13 @@ public class ProcessingRequestException extends RuntimeException {
         this.exception = exception;
     }
 
+    public ProcessingRequestException(HttpStatus httpStatus, int errorCode, String responseMessage) {
+        super(responseMessage);
+        this.httpStatus = httpStatus;
+        this.errorCode = errorCode;
+        this.responseMessage = responseMessage;
+    }
+
     public HttpStatus getHttpStatus() {
         return httpStatus;
     }

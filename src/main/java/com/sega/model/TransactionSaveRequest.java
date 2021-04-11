@@ -1,5 +1,6 @@
 package com.sega.model;
 
+import com.sega.validator.TransactionRequestValidator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -7,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @ApiModel
+@TransactionRequestValidator
 public class TransactionSaveRequest {
 
     private static final String CANNOT_BE_MISSING_OR_EMPTY = " cannot be missing or empty";
