@@ -4,13 +4,13 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class ResponseResult {
 
-    @ApiModelProperty(notes = "Additional information regarding the result", example = "Request is successful.")
+    @ApiModelProperty(notes = "Additional information regarding the result", example = "Request is un/successful.")
     private String resultMessage;
 
-    @ApiModelProperty(notes = "Status Code for success or failures", example = "200")
-    private int resultCode;
+    @ApiModelProperty(notes = "Status Code for success or failures", example = "4/200")
+    private Integer resultCode;
 
-    public ResponseResult(String resultMessage, int resultCode) {
+    public ResponseResult(String resultMessage, Integer resultCode) {
         this.resultMessage = resultMessage;
         this.resultCode = resultCode;
     }
@@ -27,7 +27,7 @@ public class ResponseResult {
         return resultCode;
     }
 
-    public void setResultCode(int resultCode) {
+    public void setResultCode(Integer resultCode) {
         this.resultCode = resultCode;
     }
 }

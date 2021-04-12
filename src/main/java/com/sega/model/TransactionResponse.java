@@ -7,7 +7,7 @@ import java.util.List;
 
 public class TransactionResponse extends ResponseResult {
 
-    @ApiModelProperty(notes = "Additional information regarding the result", example = "Request is successful.")
+    @ApiModelProperty(notes = "List of transactions")
     private List<Transaction> transactions;
 
     public TransactionResponse(String resultMessage, int resultCode, List<Transaction> transactions) {

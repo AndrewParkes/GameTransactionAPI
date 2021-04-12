@@ -1,6 +1,7 @@
 package com.sega.dao;
 
 import com.sega.model.TransactionSaveRequest;
+import io.swagger.annotations.ApiModelProperty;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
 
@@ -9,9 +10,13 @@ import java.util.UUID;
 @DynamoDbBean
 public class Transaction {
 
+    @ApiModelProperty(example = "n4798d-fjklds-894njd")
     String id;
+    @ApiModelProperty(example = "user123")
     String user;
+    @ApiModelProperty(example = "Genesis")
     String product;
+    @ApiModelProperty(example = "100.00")
     Double amount;
 
     public Transaction() {

@@ -52,7 +52,7 @@ public class DynamoDbService {
 
             return Arrays.asList(table.scan().items().stream().toArray(Transaction[]::new));
         } catch (DynamoDbException e) {
-            throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 405, "Unable to retrieve transactions", e);
+            throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 602, "Unable to retrieve transactions", e);
         }
     }
 
@@ -64,7 +64,7 @@ public class DynamoDbService {
             table.putItem(transaction);
 
         } catch (DynamoDbException e) {
-            throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 405, "Unable to save transaction", e);
+            throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 603, "Unable to save transaction", e);
         }
     }
 
@@ -108,7 +108,7 @@ public class DynamoDbService {
 
             return Arrays.asList(table.scan(enhancedRequest).items().stream().toArray(Transaction[]::new));
         } catch (DynamoDbException e) {
-            throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 405, "Unable to retrieve transactions", e);
+            throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 604, "Unable to retrieve transactions", e);
         }
     }
 }

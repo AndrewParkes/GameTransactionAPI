@@ -23,13 +23,13 @@ public class TransactionRequestValidation implements ConstraintValidator<Transac
 
     private void check2DecimalPlaces(TransactionSaveRequest transactionSaveRequest) {
         if(BigDecimal.valueOf(transactionSaveRequest.getAmount()).scale() > 2) {
-            throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 407, "Transaction amount should only have 2 decimal places");
+            throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 607, "Transaction amount should only have 2 decimal places");
         }
     }
 
     private void checkPositiveAmount(TransactionSaveRequest transactionSaveRequest) {
         if(transactionSaveRequest.getAmount() < 0) {
-            throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 406, "Transaction amount should be positive");
+            throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 606, "Transaction amount should be positive");
         }
     }
 

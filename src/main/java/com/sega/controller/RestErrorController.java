@@ -12,12 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.support.DefaultMessageSourceResolvable;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import java.util.Arrays;
 import java.util.stream.Collectors;
 
 @Controller
@@ -34,9 +31,9 @@ public class RestErrorController implements ErrorController {
                     request.getAttribute(DispatcherServlet.EXCEPTION_ATTRIBUTE)), null);
         }
 
-        //empty body
+        //TODO: empty body exception
 
-        throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 401, "Unknown Exception");
+        throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 601, "Unknown Exception");
     }
 
     public String getDefaultMessagesFromException(Throwable throwable) {
