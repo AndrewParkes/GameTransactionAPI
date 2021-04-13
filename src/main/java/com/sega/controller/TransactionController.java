@@ -75,7 +75,7 @@ public class TransactionController {
         return ResponseEntity.ok(transactionRequestService.getTransactionsByProduct(transactionRequest));
     }
 
-    @ApiOperation(value = "update Transaction")
+    @ApiOperation(value = "update Transaction using id")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Success", response = ResponseResult.class),
             @ApiResponse(code = 400, message = "Unable to update", response = ResponseResult.class)})
     @ApiImplicitParams({
