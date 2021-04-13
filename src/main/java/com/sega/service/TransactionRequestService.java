@@ -48,4 +48,11 @@ public class TransactionRequestService {
 
         return new ResponseResult("Success", 200);
     }
+
+    public ResponseResult update(Transaction transaction) {
+
+        dynamoDbService.update(transaction);
+
+        return new ResponseResult("Success", 200);
+    }
 }

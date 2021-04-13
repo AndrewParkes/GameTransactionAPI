@@ -11,8 +11,12 @@ import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
 import software.amazon.awssdk.enhanced.dynamodb.model.ScanEnhancedRequest;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
+import software.amazon.awssdk.services.dynamodb.model.AttributeAction;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
+import software.amazon.awssdk.services.dynamodb.model.AttributeValueUpdate;
 import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
+import software.amazon.awssdk.services.dynamodb.model.ResourceNotFoundException;
+import software.amazon.awssdk.services.dynamodb.model.UpdateItemRequest;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -109,6 +113,53 @@ public class DynamoDbService {
             return Arrays.asList(table.scan(enhancedRequest).items().stream().toArray(Transaction[]::new));
         } catch (DynamoDbException e) {
             throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 604, "Unable to retrieve transactions", e);
+        }
+    }
+
+    public void update(Transaction transaction){
+
+        //IS there a cleaner way of doing this?
+
+        if(transaction.getAmount() != null) {
+            update("id", transaction.getId(), "amount", String.valueOf(transaction.getAmount()));
+        }
+        if(transaction.getProduct() != null) {
+            update("id", transaction.getId(), "product", String.valueOf(transaction.getProduct()));
+        }
+        if(transaction.getUser() != null) {
+            update("id", transaction.getId(), "user", String.valueOf(transaction.getUser()));
+        }
+    }
+
+    private void update(String key,
+                           String keyVal,
+                           String name,
+                           String updateVal){
+
+        HashMap<String,AttributeValue> itemKey = new HashMap<>();
+
+        itemKey.put(key, AttributeValue.builder().s(keyVal).build());
+
+        HashMap<String, AttributeValueUpdate> updatedValues =
+                new HashMap<>();
+
+        updatedValues.put(name, AttributeValueUpdate.builder()
+                .value(AttributeValue.builder().s(updateVal).build())
+                .action(AttributeAction.PUT)
+                .build());
+
+        UpdateItemRequest request = UpdateItemRequest.builder()
+                .tableName(TRANSACTION)
+                .key(itemKey)
+                .attributeUpdates(updatedValues)
+                .build();
+
+        try {
+            ddb.updateItem(request);
+        } catch (ResourceNotFoundException e) {
+            throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 605, "Unable to update transaction. Transaction not found", e);
+        } catch (DynamoDbException e) {
+            throw new ProcessingRequestException(HttpStatus.BAD_REQUEST, 606, "Unable to update transaction", e);
         }
     }
 }
