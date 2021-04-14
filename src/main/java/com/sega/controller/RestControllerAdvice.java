@@ -18,6 +18,8 @@ public class RestControllerAdvice {
 
         if (e.getException() != null) {
             log.error("{}. Exception", e.getMessage(), e.getException());
+        } else {
+            log.error("{}. Exception", e.getMessage());
         }
 
         ResponseResult rs = new ResponseResult(e.getResponseMessage(), e.getErrorCode());
