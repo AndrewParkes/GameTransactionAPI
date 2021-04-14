@@ -1,20 +1,17 @@
 package com.sega.controller;
 
 import com.sega.exception.ProcessingRequestException;
+import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-
-import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.context.support.DefaultMessageSourceResolvable;
-import org.springframework.validation.BindException;
 import org.springframework.web.servlet.DispatcherServlet;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.stream.Collectors;
 
 @Controller
@@ -38,7 +35,7 @@ public class RestErrorController implements ErrorController {
 
     public String getDefaultMessagesFromException(Throwable throwable) {
 
-        if(throwable instanceof BindException) { //Not Null and not Blank variable exceptions
+        if (throwable instanceof BindException) { //Not Null and not Blank variable exceptions
             return ((BindException) throwable).getBindingResult().getAllErrors().stream().map(
                     DefaultMessageSourceResolvable::getDefaultMessage).collect(
                     Collectors.joining("; "));

@@ -18,7 +18,7 @@ public class TransactionUserRequest {
 
     @NotNull(message = USERNAME + CANNOT_BE_NULL)
     @NotBlank(message = USERNAME + CANNOT_BE_MISSING_OR_EMPTY)
-    @ApiModelProperty(example = USERNAME_EXAMPLE,  required = true, notes = USERNAME_DESCRIPTION)
+    @ApiModelProperty(example = USERNAME_EXAMPLE, required = true, notes = USERNAME_DESCRIPTION)
     String user;
 
     TransactionUserRequest() {

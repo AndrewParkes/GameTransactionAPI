@@ -1,25 +1,57 @@
 package com.sega.model;
 
 import com.sega.dao.Transaction;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import java.util.List;
+@ApiModel
+public class TransactionResponse {
 
-public class TransactionResponse extends ResponseResult {
+    @ApiModelProperty(example = "n4798d-fjklds-894njd")
+    String id;
+    @ApiModelProperty(example = "user123")
+    String user;
+    @ApiModelProperty(example = "Genesis")
+    String product;
+    @ApiModelProperty(example = "100.00")
+    Double amount;
 
-    @ApiModelProperty(notes = "List of transactions")
-    private List<Transaction> transactions;
-
-    public TransactionResponse(String resultMessage, int resultCode, List<Transaction> transactions) {
-        super(resultMessage, resultCode);
-        this.transactions = transactions;
+    public TransactionResponse(Transaction transaction) {
+        id = transaction.getId();
+        user = transaction.getUser();
+        product = transaction.getProduct();
+        amount = transaction.getAmount();
     }
 
-    public List<Transaction> getTransactions() {
-        return transactions;
+    public String getId() {
+        return id;
     }
 
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getProduct() {
+        return product;
+    }
+
+    public void setProduct(String product) {
+        this.product = product;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 }

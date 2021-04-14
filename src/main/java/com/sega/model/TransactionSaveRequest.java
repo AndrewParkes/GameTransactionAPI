@@ -11,34 +11,34 @@ import javax.validation.constraints.NotNull;
 @TransactionRequestValidator
 public class TransactionSaveRequest {
 
-    private static final String CANNOT_BE_MISSING_OR_EMPTY = " cannot be missing or empty";
-    private static final String CANNOT_BE_NULL = " cannot be null";
+    protected static final String CANNOT_BE_MISSING_OR_EMPTY = " cannot be missing or empty";
+    protected static final String CANNOT_BE_NULL = " cannot be null";
 
-    private static final String USERNAME = "Username";
-    private static final String USERNAME_EXAMPLE = "user123";
-    private static final String USERNAME_DESCRIPTION = "Username creating the transaction";
+    protected static final String USERNAME = "Username";
+    protected static final String USERNAME_EXAMPLE = "user123";
+    protected static final String USERNAME_DESCRIPTION = "Username creating the transaction";
 
-    private static final String PRODUCT = "Product";
-    private static final String PRODUCT_EXAMPLE = "Mega Drive";
-    private static final String PRODUCT_DESCRIPTION = "The name of the product for the transaction";
+    protected static final String PRODUCT = "Product";
+    protected static final String PRODUCT_EXAMPLE = "Mega Drive";
+    protected static final String PRODUCT_DESCRIPTION = "The name of the product for the transaction";
 
-    private static final String AMOUNT = "Amount";
-    private static final String AMOUNT_EXAMPLE = "189.99";
-    private static final String AMOUNT_DESCRIPTION = "GB£ amount of the transaction";
+    protected static final String AMOUNT = "Amount";
+    protected static final String AMOUNT_EXAMPLE = "189.99";
+    protected static final String AMOUNT_DESCRIPTION = "GB£ amount of the transaction";
 
     @NotNull(message = USERNAME + CANNOT_BE_NULL)
     @NotBlank(message = USERNAME + CANNOT_BE_MISSING_OR_EMPTY)
-    @ApiModelProperty(example = USERNAME_EXAMPLE,  required = true, notes = USERNAME_DESCRIPTION)
+    @ApiModelProperty(example = USERNAME_EXAMPLE, required = true, notes = USERNAME_DESCRIPTION)
     String user;
 
     @NotNull(message = PRODUCT + CANNOT_BE_NULL)
     @NotBlank(message = PRODUCT + CANNOT_BE_MISSING_OR_EMPTY)
-    @ApiModelProperty(example = PRODUCT_EXAMPLE,  required = true, notes = PRODUCT_DESCRIPTION)
+    @ApiModelProperty(example = PRODUCT_EXAMPLE, required = true, notes = PRODUCT_DESCRIPTION)
     String product;
 
     @NotNull(message = AMOUNT + CANNOT_BE_NULL)
-    @ApiModelProperty(example = AMOUNT_EXAMPLE,  required = true, notes = AMOUNT_DESCRIPTION)
-    double amount;
+    @ApiModelProperty(example = AMOUNT_EXAMPLE, required = true, notes = AMOUNT_DESCRIPTION)
+    Double amount;
 
     TransactionSaveRequest() {
 
@@ -60,11 +60,11 @@ public class TransactionSaveRequest {
         this.product = product;
     }
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 }

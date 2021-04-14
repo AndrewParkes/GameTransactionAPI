@@ -18,7 +18,7 @@ public class TransactionProductRequest {
 
     @NotNull(message = PRODUCT + CANNOT_BE_NULL)
     @NotBlank(message = PRODUCT + CANNOT_BE_MISSING_OR_EMPTY)
-    @ApiModelProperty(example = PRODUCT_EXAMPLE,  required = true, notes = PRODUCT_DESCRIPTION)
+    @ApiModelProperty(example = PRODUCT_EXAMPLE, required = true, notes = PRODUCT_DESCRIPTION)
     String product;
 
     TransactionProductRequest() {

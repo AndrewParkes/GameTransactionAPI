@@ -2,6 +2,7 @@ package com.sega.db;
 
 import com.sega.dao.Transaction;
 import com.sega.exception.ProcessingRequestException;
+import com.sega.model.TransactionUpdateRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
@@ -51,7 +52,7 @@ public class DynamoDbService {
 
     public List<Transaction> getAllTransactions() {
 
-        try{
+        try {
             DynamoDbTable<Transaction> table = enhancedClient.table(TRANSACTION, TableSchema.fromBean(Transaction.class));
 
             return Arrays.asList(table.scan().items().stream().toArray(Transaction[]::new));
@@ -91,7 +92,7 @@ public class DynamoDbService {
 
     private List<Transaction> getTransactionByAttributeEqualsValue(String attribute, AttributeValue attributeValue) {
 
-        try{
+        try {
             DynamoDbTable<Transaction> table = enhancedClient.table(TRANSACTION, TableSchema.fromBean(Transaction.class));
 
             Map<String, AttributeValue> myMap = new HashMap<>();
@@ -101,7 +102,7 @@ public class DynamoDbService {
             myExMap.put("#" + attribute, attribute);
 
             Expression expression = Expression.builder()
-                    .expression("#" + attribute + " = :"  + attribute)
+                    .expression("#" + attribute + " = :" + attribute)
                     .expressionValues(myMap)
                     .expressionNames(myExMap)
                     .build();
@@ -116,27 +117,27 @@ public class DynamoDbService {
         }
     }
 
-    public void update(Transaction transaction){
+    public void update(TransactionUpdateRequest transactionUpdateRequest) {
 
         //IS there a cleaner way of doing this?
 
-        if(transaction.getAmount() != null) {
-            update("id", transaction.getId(), "amount", String.valueOf(transaction.getAmount()));
+        if (transactionUpdateRequest.getAmount() != null) {
+            update("id", transactionUpdateRequest.getId(), "amount", String.valueOf(transactionUpdateRequest.getAmount()));
         }
-        if(transaction.getProduct() != null) {
-            update("id", transaction.getId(), "product", String.valueOf(transaction.getProduct()));
+        if (transactionUpdateRequest.getProduct() != null) {
+            update("id", transactionUpdateRequest.getId(), "product", String.valueOf(transactionUpdateRequest.getProduct()));
         }
-        if(transaction.getUser() != null) {
-            update("id", transaction.getId(), "user", String.valueOf(transaction.getUser()));
+        if (transactionUpdateRequest.getUser() != null) {
+            update("id", transactionUpdateRequest.getId(), "user", String.valueOf(transactionUpdateRequest.getUser()));
         }
     }
 
     private void update(String key,
-                           String keyVal,
-                           String name,
-                           String updateVal){
+                        String keyVal,
+                        String name,
+                        String updateVal) {
 
-        HashMap<String,AttributeValue> itemKey = new HashMap<>();
+        HashMap<String, AttributeValue> itemKey = new HashMap<>();
 
         itemKey.put(key, AttributeValue.builder().s(keyVal).build());
 
