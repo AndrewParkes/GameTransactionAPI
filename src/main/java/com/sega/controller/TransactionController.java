@@ -45,7 +45,7 @@ public class TransactionController {
             @ApiResponse(code = 400, message = "Unable to retrieve Transactions", response = ResponseResult.class)})
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorisation", value = "API Credentials: user authorization", paramType = "header", example = "xxxxxx", dataTypeClass = String.class)})
-    @PostMapping("/retrieveAll")
+    @PostMapping("/retrieveall")
     public ResponseEntity<ResponseResult> retrieveAllRequest() {
 
         return ResponseEntity.ok(transactionRequestService.getAllTransactions());
@@ -56,7 +56,7 @@ public class TransactionController {
             @ApiResponse(code = 400, message = "Unable to retrieve Transactions", response = ResponseResult.class)})
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorisation", value = "API Credentials: user authorization", paramType = "header", example = "xxxxxx", dataTypeClass = String.class)})
-    @PostMapping("/retrieveByUser")
+    @PostMapping("/retrievebyuser")
     public ResponseEntity<ResponseResult> retrieveAllRequest(@RequestBody TransactionUserRequest transactionRequest) {
 
         return ResponseEntity.ok(transactionRequestService.getTransactionsByUser(transactionRequest));
@@ -67,7 +67,7 @@ public class TransactionController {
             @ApiResponse(code = 400, message = "Unable to retrieve Transactions", response = ResponseResult.class)})
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorisation", value = "API Credentials: user authorization", paramType = "header", example = "xxxxxx", dataTypeClass = String.class)})
-    @PostMapping("/retrieveByProduct")
+    @PostMapping("/retrievebyproduct")
     public ResponseEntity<ResponseResult> retrieveAllRequest(@RequestBody TransactionProductRequest transactionRequest) {
 
         return ResponseEntity.ok(transactionRequestService.getTransactionsByProduct(transactionRequest));
