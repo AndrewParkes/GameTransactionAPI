@@ -1,7 +1,7 @@
-package com.sega.validator;
+package com.game.validator;
 
-import com.sega.exception.ProcessingRequestException;
-import com.sega.model.TransactionSaveRequest;
+import com.game.exception.ProcessingRequestException;
+import com.game.model.TransactionSaveRequest;
 import org.springframework.http.HttpStatus;
 
 import javax.validation.ConstraintValidator;

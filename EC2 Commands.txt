@@ -1,9 +1,9 @@
 #ssh
-ssh -i "C:\Users\PC\IdeaProjects\SegaGameTransactionAPI\keypair\SegaEC2LeyPair.pem" ec2-user@ec2-18-191-130-4.us-east-2.compute.amazonaws.com
+ssh -i "C:\Users\PC\IdeaProjects\GameTransactionAPI\keypair\GameEC2LeyPair.pem" ec2-user@ec2-18-191-130-4.us-east-2.compute.amazonaws.com
 
 #Copy jar from local to EC2
-scp -i "C:\Users\PC\IdeaProjects\SegaGameTransactionAPI\keypair\SegaEC2LeyPair.pem" "C:/Users/PC/IdeaProjects/SegaGameTransactionAPI/target/SegaGameTransactionAPI-1.0-SNAPSHOT.jar" ec2-user@ec2-18-191-130-4.us-east-2.compute.amazonaws.com:/home/ec2-user
-scp -i SegaEC2LeyPair.pem C:\Users/PC\IdeaProjects\SegaGameTransactionAPI\target\SegaGameTransactionAPI-1.0-SNAPSHOT.jar ec2-18-191-130-4.us-east-2.compute.amazonaws.com:/home/ec2-user
+scp -i "C:\Users\PC\IdeaProjects\GameTransactionAPI\keypair\GameEC2LeyPair.pem" "C:/Users/PC/IdeaProjects/GameTransactionAPI/target/GameTransactionAPI-1.0-SNAPSHOT.jar" ec2-user@ec2-18-191-130-4.us-east-2.compute.amazonaws.com:/home/ec2-user
+scp -i GameEC2LeyPair.pem C:\Users/PC\IdeaProjects\GameTransactionAPI\target\GameTransactionAPI-1.0-SNAPSHOT.jar ec2-18-191-130-4.us-east-2.compute.amazonaws.com:/home/ec2-user
 
 #kill process on port 8080
 kill -9 $(lsof -t -i:8080)
@@ -12,4 +12,4 @@ sudo netstat -plten |grep java
 sudo kill -9 16335
 
 #deploy jar
-java -jar SegaGameTransactionAPI-1.0-SNAPSHOT.jar &> output.log &
+java -jar GameTransactionAPI-1.0-SNAPSHOT.jar &> output.log &

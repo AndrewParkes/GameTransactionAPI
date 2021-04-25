@@ -1,4 +1,4 @@
-package com.sega.exception;
+package com.game.exception;
 
 import org.springframework.http.HttpStatus;
 

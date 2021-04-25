@@ -1,6 +1,6 @@
-package com.sega.model;
+package com.game.model;
 
-import com.sega.validator.TransactionRequestValidator;
+import com.game.validator.TransactionRequestValidator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

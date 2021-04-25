@@ -1,4 +1,4 @@
-package com.sega.model;
+package com.game.model;
 
 import io.swagger.annotations.ApiModelProperty;
 

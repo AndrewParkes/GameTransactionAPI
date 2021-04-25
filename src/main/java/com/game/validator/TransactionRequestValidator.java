@@ -1,4 +1,4 @@
-package com.sega.validator;
+package com.game.validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

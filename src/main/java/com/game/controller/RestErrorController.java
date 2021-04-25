@@ -1,6 +1,6 @@
-package com.sega.controller;
+package com.game.controller;
 
-import com.sega.exception.ProcessingRequestException;
+import com.game.exception.ProcessingRequestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.servlet.error.ErrorController;

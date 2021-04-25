@@ -1,6 +1,6 @@
-package com.sega.dao;
+package com.game.dao;
 
-import com.sega.model.TransactionSaveRequest;
+import com.game.model.TransactionSaveRequest;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
 

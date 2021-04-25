@@ -1,12 +1,12 @@
-package com.sega.controller;
+package com.game.controller;
 
-import com.sega.model.ResponseResult;
-import com.sega.model.TransactionListResponse;
-import com.sega.model.TransactionProductRequest;
-import com.sega.model.TransactionSaveRequest;
-import com.sega.model.TransactionUpdateRequest;
-import com.sega.model.TransactionUserRequest;
-import com.sega.service.TransactionRequestService;
+import com.game.model.ResponseResult;
+import com.game.model.TransactionListResponse;
+import com.game.model.TransactionProductRequest;
+import com.game.model.TransactionSaveRequest;
+import com.game.model.TransactionUpdateRequest;
+import com.game.model.TransactionUserRequest;
+import com.game.service.TransactionRequestService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;

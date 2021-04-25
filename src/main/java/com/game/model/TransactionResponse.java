@@ -1,6 +1,6 @@
-package com.sega.model;
+package com.game.model;
 
-import com.sega.dao.Transaction;
+import com.game.dao.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

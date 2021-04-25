@@ -1,8 +1,8 @@
-package com.sega.db;
+package com.game.db;
 
-import com.sega.dao.Transaction;
-import com.sega.exception.ProcessingRequestException;
-import com.sega.model.TransactionUpdateRequest;
+import com.game.dao.Transaction;
+import com.game.exception.ProcessingRequestException;
+import com.game.model.TransactionUpdateRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;

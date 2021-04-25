@@ -1,4 +1,4 @@
-package com.sega;
+package com.game;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

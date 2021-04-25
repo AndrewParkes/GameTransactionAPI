@@ -1,14 +1,14 @@
-package com.sega.service;
+package com.game.service;
 
-import com.sega.dao.Transaction;
-import com.sega.db.DynamoDbService;
-import com.sega.model.ResponseResult;
-import com.sega.model.TransactionListResponse;
-import com.sega.model.TransactionProductRequest;
-import com.sega.model.TransactionResponse;
-import com.sega.model.TransactionSaveRequest;
-import com.sega.model.TransactionUpdateRequest;
-import com.sega.model.TransactionUserRequest;
+import com.game.dao.Transaction;
+import com.game.db.DynamoDbService;
+import com.game.model.ResponseResult;
+import com.game.model.TransactionListResponse;
+import com.game.model.TransactionProductRequest;
+import com.game.model.TransactionResponse;
+import com.game.model.TransactionSaveRequest;
+import com.game.model.TransactionUpdateRequest;
+import com.game.model.TransactionUserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
